@@ -1,7 +1,12 @@
 package weathershopperpages.homepage;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.util.Scanner;
+
+import static weathershopperpages.homepage.HomePageUI.*;
 
 public class HomePage {
     private WebDriver driver;
@@ -10,15 +15,8 @@ public class HomePage {
         this.driver=driver;
     }
 
-    public void SelectCategory(){
-        WebElement temperatureElement=driver.findElement(HomePageUI.Temperature);
-        String tempText=temperatureElement.getText().substring(0,temperatureElement.getText().length()-2).trim();
-        int temp=Integer.parseInt(tempText);
-        if(temp>19){
-            driver.findElement(HomePageUI.Sunscreen_Button).click();
-        }
-        else {
-            driver.findElement(HomePageUI.Moisturizer_Button).click();
-        }
+    public void NavigateTo(String productType){
+        WebElement button=driver.findElement(By.xpath("//button[contains(text(), '" + productType + "')]"));
+        button.click();
     }
 }
