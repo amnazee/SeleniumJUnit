@@ -15,8 +15,8 @@ public class PaymentPage {
     }
 
     public void completePayment(){
-        driver.findElement(CartPageUI.PayButton).click();
-        driver.switchTo().frame(0);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(Email));
         driver.findElement(Email).sendKeys("amnazeeshann21@gmail.com");
         driver.findElement(CardNumber).sendKeys("4242 4242 4242 4242");
         driver.findElement(ExpiryDate).sendKeys("02/24");

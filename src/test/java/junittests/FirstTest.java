@@ -32,12 +32,12 @@ public class FirstTest {
     }
 
     @Test
-    public void FirstTest(){
+    public void firstTest(){
         homePage.NavigateTo("moisturizer");
         productPage.selectProducts();
+        cartPage.CheckCart();
         paymentPage.completePayment();
     }
-
 
     @After
     public void tearDown() {
