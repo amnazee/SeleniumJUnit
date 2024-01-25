@@ -18,7 +18,11 @@ public class PaymentPage {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(Email));
         driver.findElement(Email).sendKeys("amnazeeshann21@gmail.com");
-        driver.findElement(CardNumber).sendKeys("4242 4242 4242 4242");
+        String cardNumber="4242 4242 4242 4242";
+        for(int i = 0; i < cardNumber.length(); i++){
+            String cardNumChar = String.valueOf(cardNumber.charAt(i));
+            driver.findElement(CardNumber).sendKeys(cardNumChar);
+        }
         driver.findElement(ExpiryDate).sendKeys("02/24");
         driver.findElement(Cvc).sendKeys("123");
         driver.findElement(ConfirmPayment).click();

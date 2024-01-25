@@ -1,45 +1,55 @@
 package junittests;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import weathershopperpages.cartpage.CartPage;
 import weathershopperpages.homepage.HomePage;
+import weathershopperpages.moisturizerpage.MoisturizerPage;
 import weathershopperpages.paymentmodal.PaymentPage;
 import weathershopperpages.productpage.ProductPage;
+import weathershopperpages.sunscreen.SunscreenPage;
 
-import java.util.Scanner;
-
+@Execution(ExecutionMode.CONCURRENT)
 public class FirstTest {
     private WebDriver driver;
     public HomePage homePage;
     public PaymentPage paymentPage;
     public ProductPage productPage;
     public CartPage cartPage;
+    public MoisturizerPage moisturizerPage;
+    public SunscreenPage sunscreenPage;
 
-    @Before
+    public DriverManager driverManager;
+    @BeforeEach
     public void setUp(){
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
-        System.out.println("hello");
         driver=new ChromeDriver();
-        driver.get("https://weathershopper.pythonanywhere.com/");
         homePage=new HomePage(driver);
         paymentPage=new PaymentPage(driver);
         cartPage=new CartPage(driver);
         productPage=new ProductPage(driver);
+        moisturizerPage=new MoisturizerPage(driver);
+        sunscreenPage=new SunscreenPage(driver);
     }
 
     @Test
     public void firstTest(){
-        homePage.NavigateTo("moisturizer");
-        productPage.selectProducts();
-        cartPage.CheckCart();
-        paymentPage.completePayment();
+        driver.get("https://weathershopper.pythonanywhere.com/moisturizer");
+        String productIngredient="almond";
+        System.out.println(moisturizerPage.ProductWithAnIngredient(productIngredient));
     }
 
-    @After
+    @Test
+    public void secondTest(){
+//        driver.get("https://weathershopper.pythonanywhere.com/moisturizer");
+          System.out.println(driverManager.getDriver());
+    }
+    @AfterEach
     public void tearDown() {
         if (driver != null) {
             driver.quit();

@@ -10,7 +10,4 @@ public class PaymentUI {
     public static final By Cvc = By.xpath("//input[@id='cc-csc']");
     public static final By ZipCode = By.xpath("//input[@name='zip']");
     public static final By ConfirmPayment = By.xpath("//span[@class='iconTick']");
-    public static final By SuccessHeading = By.xpath("//h2[contains(.,'SUCCESS')]");
-
-
 }
