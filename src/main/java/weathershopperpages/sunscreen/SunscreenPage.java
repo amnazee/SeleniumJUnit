@@ -12,7 +12,7 @@ import static weathershopperpages.productpage.ProductPageUI.All_Products;
 public class SunscreenPage extends ProductPage {
 
     public SunscreenPage(WebDriver driver) {
-        super(driver);
+//        super(driver);
     }
 
 }

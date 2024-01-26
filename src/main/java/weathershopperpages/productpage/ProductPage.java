@@ -3,8 +3,7 @@ package weathershopperpages.productpage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import weathershopperpages.moisturizerpage.MoisturizerPage;
-import weathershopperpages.sunscreen.SunscreenPage;
+import weathershopperpages.driver.DriverManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +12,12 @@ import static weathershopperpages.productpage.ProductPageUI.*;
 
 public class ProductPage {
     public WebDriver driver;
+    public static DriverManager driverManager;
 
-    public ProductPage(WebDriver driver){
-        this.driver=driver;
+    public ProductPage(){
+        driverManager=DriverManager.getInstance();
+        this.driver=driverManager.getDriver();
+        driver.get("https://weathershopper.pythonanywhere.com/moisturizer");
     }
 
     public List<String> selectProductsInPriceRange(int minPrice, int maxPrice){

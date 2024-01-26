@@ -1,7 +1,9 @@
-package junittests;
+package weathershopperpages.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.sql.Driver;
 
 public class DriverManager {
     private static DriverManager instance;
@@ -20,5 +22,11 @@ public class DriverManager {
     }
     public WebDriver getDriver() {
         return driver;
+    }
+
+    public static void quit()
+    {
+        instance.driver.quit();
+        instance=null;
     }
 }
